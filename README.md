@@ -1,5 +1,5 @@
 # josm-ohmapper
-OHMapper plugin for JOSM
+OHMapper ([OpenHistoricalMap](http://openhistoricalmap.org) editor) plugin for JOSM. This is designed to facilitate editing of OpenHistoricalMap data using JOSM, and isn't going to be very useful for OpenStreetMap. So make sure you're signed up for OHM and [pointed at OHM data](https://wiki.openstreetmap.org/wiki/Open_Historical_Map/OHM_Basics#JOSM).
 
 ## Features
 
