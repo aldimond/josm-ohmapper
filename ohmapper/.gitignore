@@ -1,0 +1,5 @@
+# Output directories
+build/
+javadoc/
+test/report
+test/jacoco.exec
