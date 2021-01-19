@@ -14,9 +14,14 @@
 <project name="ohmapper" default="dist" basedir=".">
 
     <!-- enter the SVN commit message -->
-    <property name="commit.message" value="Commit message"/>
-    <!-- enter the *lowest* JOSM version this plugin is currently compatible with -->
-    <property name="plugin.main.version" value="10580"/>
+    <property name="commit.message" value="..."/>
+    <!-- nb: This plugin is probably compatible with older versions; this is the oldest I've tested -->
+    <property name="plugin.main.version" value="16812"/>
+
+    <!-- This ends up as "Plugin-Version" in the manifest; it should correspond with github releases for now. -->
+    <property name="version.entry.commit.revision" value="1"/>
+    <property name="version.entry.commit.date" value="2021-01-19"/>
+
 
     <!-- Configure these properties (replace "..." accordingly).
          See https://josm.openstreetmap.de/wiki/DevelopersGuide/DevelopingPlugins
@@ -25,7 +30,7 @@
     <property name="plugin.class" value="org.openhistoricalmap.josm.plugins.ohmapper.OHMapperPlugin"/>
     <property name="plugin.description" value="Tools and customizations for OpenHistoricalMap"/>
     <property name="plugin.icon" value="..."/>
-    <property name="plugin.link" value="..."/>
+    <property name="plugin.link" value="https://github.com/aldimond/josm-ohmapper"/>
     <property name="plugin.canloadatruntime" value="true"/>
     <!--<property name="plugin.early" value="..."/>-->
     <!--<property name="plugin.requires" value="..."/>-->
