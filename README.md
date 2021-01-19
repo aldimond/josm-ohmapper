@@ -32,6 +32,26 @@ negative, to see what just what might exist at any point in 1915, use
  - More complete support for different date/tagging formats?
  - Making consistency checks time-aware?
  - Y'all probably have better ideas than me!
+ 
+## How to install pre-built plugin from release
+
+Download "ohmapper.jar" from a release and copy to your JOSM plugins directory.
+For a per-user location:
+ - Mac: `${HOME}/Library/JOSM/plugins`
+ - Unix-ish: `${HOME}/.josm/plugins` seems to get first priority;
+ `${HOME}/.local/share/JOSM/plugins` also works (assuming your `{$XDG_DATA_HOME}`
+ is normal).
+ - See [here](https://josm.openstreetmap.de/wiki/DevelopersGuide/DevelopingPlugins#Testing)
+ for dev-focused plugin directory notes.
+
+The release JARs are built by me (Al Dimond). If you want you can make some attempt
+to verify I'm a real person that owns the signing key for the provided signature...
+that will at least be good to verify the future releases are also being done by
+someone with this key. It doesn't really prove it's built from the code here, though!
+
+I've tested on Mac and Linux. If I start doing real UI features I might get my
+Windows VM running again. Feel free to submit issues if something is broken or
+find me on OpenHistoricalMap slack.
 
 ## How to build
 
