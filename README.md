@@ -1,5 +1,9 @@
 # josm-ohmapper
-OHMapper ([OpenHistoricalMap](http://openhistoricalmap.org) editor) plugin for JOSM. This is designed to facilitate editing of OpenHistoricalMap data using JOSM, and isn't going to be very useful for OpenStreetMap. So make sure you're signed up for OHM and [pointed at OHM data](https://wiki.openstreetmap.org/wiki/Open_Historical_Map/OHM_Basics#JOSM).
+OHMapper ([OpenHistoricalMap](http://openhistoricalmap.org) editor) plugin for
+JOSM. This is designed to facilitate editing of OpenHistoricalMap data using
+JOSM, and isn't going to be very useful for OpenStreetMap. So make sure you're
+signed up for OHM and [pointed at OHM
+data](https://wiki.openstreetmap.org/wiki/Open_Historical_Map/OHM_Basics#JOSM).
 
 ## Features
 
@@ -39,19 +43,52 @@ Download "ohmapper.jar" from a release and copy to your JOSM plugins directory.
 For a per-user location:
  - Mac: `${HOME}/Library/JOSM/plugins`
  - Unix-ish: `${HOME}/.josm/plugins` seems to get first priority;
- `${HOME}/.local/share/JOSM/plugins` also works (assuming your `{$XDG_DATA_HOME}`
- is normal).
+ `${HOME}/.local/share/JOSM/plugins` also works (assuming your
+ `{$XDG_DATA_HOME}` is normal).
  - See [here](https://josm.openstreetmap.de/wiki/DevelopersGuide/DevelopingPlugins#Testing)
  for dev-focused plugin directory notes.
-
-The release JARs are built by me (Al Dimond). If you want you can make some attempt
-to verify I'm a real person that owns the signing key for the provided signature...
-that will at least be good to verify the future releases are also being done by
-someone with this key. It doesn't really prove it's built from the code here, though!
 
 I've tested on Mac and Linux. If I start doing real UI features I might get my
 Windows VM running again. Feel free to submit issues if something is broken or
 find me on OpenHistoricalMap slack.
+
+### Verification of release builds
+
+The release JARs are built by me (Al Dimond). For each ".jar" I will provide
+SHA sums and GPG signatures. To verify a SHA sum:
+
+1. Download "ohmapper.jar" and "ohmapper.jar.shasum" from the same release to
+   the same directory
+1. Run `shasum -c ohmapper.jar.shasum`
+
+This verifies integrity of the JAR (as long as you trust me, GitHub, and my
+ability to keep my dev machines and GitHub account secure). I'll keep an
+independent store of release bits and checksums in case you trust some other
+means of contacting me more.
+
+If you want to use GPG verification you can additionally be assured that the
+releases are built by someone with access to my keys, and that they aren't
+changing too often. You still have to trust GitHub a bit (that's where you'll
+download the public keys from initially) -- if you can chase me down by email
+or OSM Slack and establish some communication you trust I'll verify key
+IDs/signatures that way; by this point you should probably have the code
+reviewed in triplicate :-).
+
+1. (First-time only) Install an OpenPGP implementation (I'm using GnuPG at the moment) and `curl`.
+1. (Needed whenever I update my keys, hopefully not that often) Download and
+   install the public keys associated with my GitHub account. With GnuPG that's
+   `curl https://github.com/aldimond.gpg | gpg --install`.
+   - GPG will not consider these keys trusted, only (hopefully) valid, and
+     every time you use them to verify a release it will warn you that there
+     is, "No indication the signature belongs to the owner." That's true as
+     far as as a PGP system can know! You additionally know that someone that
+     controls this GitHub account put them there, for what it's worth (maybe
+     not much).
+   - You shouldn't confer trust onto these keys (by signing them with your
+     keys) except within a keyring where "trust" means something limited like,
+     "These keys are associated with some rando's GitHub account."
+1. Download "ohmapper.jar.asc" and "ohmapper.jar" from the same release.
+1. Run `gpg --verify ohmapper.jar.asc ohmapper.jar`.
 
 ## How to build
 
