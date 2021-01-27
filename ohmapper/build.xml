@@ -19,8 +19,8 @@
     <property name="plugin.main.version" value="16812"/>
 
     <!-- This ends up as "Plugin-Version" in the manifest; it should correspond with github releases for now. -->
-    <property name="version.entry.commit.revision" value="1"/>
-    <property name="version.entry.commit.date" value="2021-01-19"/>
+    <property name="version.entry.commit.revision" value="1.1-pre"/>
+    <property name="version.entry.commit.date" value="2021-01-26"/>
 
 
     <!-- Configure these properties (replace "..." accordingly).
