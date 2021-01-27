@@ -69,6 +69,14 @@ class TimeRange {
                     TimeRange.parseEnd(rangeStr.substring(doubleDotIndex + "..".length())));
         }
 
+        // Look for a "/" separator (EDTF equivalent for "..")
+        int slashIndex = rangeStr.indexOf("/");
+        if (slashIndex >= 0) {
+            return new TimeRange(
+                    TimeRange.parseStart(rangeStr.substring(0, slashIndex)),
+                    TimeRange.parseEnd(rangeStr.substring(slashIndex + "/".length())));
+        }
+
         // Otherwise this should be a single unit.
         return new TimeRange(TimeRange.parseStart(rangeStr), TimeRange.parseEnd(rangeStr));
     }

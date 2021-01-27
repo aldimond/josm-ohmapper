@@ -30,6 +30,13 @@ public class TimeRangeTest {
     }
 
     @Test
+    public void parse_slash() {
+        TimeRange r = TimeRange.parse("1990/2011");
+        assertEquals(LocalDate.of(1990, 1, 1), r.getStart());
+        assertEquals(LocalDate.of(2012, 1, 1), r.getEnd());
+    }
+
+    @Test
     public void parse_singleYear() {
         TimeRange r = TimeRange.parse("1997");
         assertEquals(LocalDate.of(1997, 1, 1), r.getStart());
