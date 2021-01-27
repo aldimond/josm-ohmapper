@@ -3,6 +3,9 @@ package org.openhistoricalmap.josm.plugins.ohmapper;
 import static org.openstreetmap.josm.tools.I18n.tr;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
 import java.util.Locale;
 import java.util.logging.Logger;
@@ -77,7 +80,30 @@ class TimeRange {
                     TimeRange.parseEnd(rangeStr.substring(slashIndex + "/".length())));
         }
 
-        // Otherwise this should be a single unit.
+        // Otherwise this should be a single unit. In EDTF this may be a full date followed by 'T'
+        // (but we've lower-cased it so we look for 't') then a time. We'll validate the time but
+        // ignore it.
+        int tIndex = rangeStr.indexOf("t");
+        if (tIndex >= 0) {
+            // Check the whole thing for validity.
+            try {
+                LocalDateTime.parse(
+                        rangeStr.toUpperCase(Locale.ENGLISH),
+                        DateTimeFormatter.ISO_DATE_TIME);
+            } catch (DateTimeParseException e) {
+                // Also try "instant" format, which is also allowed by EDTF.
+                LocalDateTime.parse(
+                        rangeStr.toUpperCase(Locale.ENGLISH),
+                        DateTimeFormatter.ISO_INSTANT);
+            }
+            ParsedDate d = TimeRange.parseDate(rangeStr.substring(0, tIndex));
+            if (d.unit != ChronoUnit.DAYS) {
+                throw new IllegalArgumentException();
+            }
+            return new TimeRange(d.date, d.date.plus(1, d.unit));
+        }
+
+        // No time; this could be any single unit (year, month, day).
         return new TimeRange(TimeRange.parseStart(rangeStr), TimeRange.parseEnd(rangeStr));
     }
 

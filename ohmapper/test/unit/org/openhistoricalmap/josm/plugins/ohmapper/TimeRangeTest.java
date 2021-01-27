@@ -58,6 +58,30 @@ public class TimeRangeTest {
     }
 
     @Test
+    public void parse_singleDateTime() {
+        TimeRange r = TimeRange.parse("2021-01-22T01:00:05");
+        // Time is ignored.
+        assertEquals(LocalDate.of(2021, 01, 22), r.getStart());
+        assertEquals(LocalDate.of(2021, 01, 23), r.getEnd());
+    }
+
+    @Test
+    public void parse_dateTimeWithOffset() {
+        TimeRange r = TimeRange.parse("2020-03-03T01:01:01+03:30");
+        // Time, offset ignored.
+        assertEquals(LocalDate.of(2020, 3, 3), r.getStart());
+        assertEquals(LocalDate.of(2020, 3, 4), r.getEnd());
+    }
+
+    @Test
+    public void parse_dateTimeWithZ() {
+        TimeRange r = TimeRange.parse("2020-06-01T02:07:22Z");
+        // Time, offset ignored.
+        assertEquals(LocalDate.of(2020, 6, 1), r.getStart());
+        assertEquals(LocalDate.of(2020, 6, 2), r.getEnd());
+    }
+
+    @Test
     public void fullyBefore() {
         assertBefore(TimeRange.parse("2010"), TimeRange.parse("2020"));
     }
